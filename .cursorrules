@@ -1,0 +1,55 @@
+You are working in a React Native Expo app using Expo Router and TypeScript.
+
+Goal
+Build Dayshaker, a mobile-only lifestyle app that shows one small daily "shake" and lets users mark done, skip, and favorite, with history and saved lists. No login in v1.
+
+Hard rules
+Do not overwrite or delete existing screens, routes, or content pages unless the user explicitly says to remove them.
+Do not change navigation structure (Expo Router) without explaining the new routes.
+Do not introduce React Navigation.
+Do not add new libraries unless required. If needed, explain why and keep additions minimal.
+Prefer simple, readable code over clever abstractions.
+No long hyphens (—) in any user-facing strings or comments.
+
+Architecture rules
+Use Expo Router with app/ routes.
+Put non-UI logic in src/logic.
+Put local data and DB helpers in src/data.
+Put theme in src/theme.
+Put reusable UI components in src/ui.
+Keep modules small and named by responsibility.
+
+Daily shake rules
+Daily shake must be deterministic per local day and per device, and must not change during the day.
+Compute date key as local YYYY-MM-DD.
+Seed should be deviceId + ":" + dateKey.
+Persist the assigned shake for that date in local SQLite so it survives restarts and library updates.
+
+Local persistence rules
+Use expo-sqlite for persistence in v1.
+Tables:
+daily_assignments(date_key TEXT PRIMARY KEY, shake_id TEXT NOT NULL, created_at TEXT NOT NULL)
+user_actions(date_key TEXT PRIMARY KEY, shake_id TEXT NOT NULL, status TEXT NOT NULL, saved INTEGER NOT NULL, updated_at TEXT NOT NULL)
+Status must be one of: new, done, skipped.
+Saved is 0 or 1.
+
+UI rules
+Default background: plum.
+Text: light.
+Accents: coral for the wordmark, gold wave, blue wave.
+Keep UI minimal, fun, and adult-friendly.
+Use safe area and reasonable spacing.
+Do not use bold text unless explicitly asked.
+
+Implementation rules
+Use TypeScript everywhere.
+Avoid any and as casts.
+Add basic error handling, but keep logs quiet.
+Write helper functions for DB reads and writes.
+Keep functions pure where possible.
+When making changes, prefer incremental edits, not broad rewrites.
+
+What to output
+When asked for code changes, propose the smallest set of files to modify, then implement them.
+Always include the file path at the top of each code block.
+
